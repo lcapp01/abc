@@ -216,21 +216,18 @@
             return match ? match[1] : '';
         }
         
-// 设置目标URL（修改后：保留完整路径，包括 /abc 前缀）
-function setTargetUrl() {
-    const id = extractPathId();               // 判断是否存在 /abc/ 内容
-    const targetDomain = 'https://ippidc04.cn'; // 请确认实际域名
-    
-    if (id) {
-        // 使用当前完整路径（包含 /abc/... 和查询参数）进行跳转
-        const fullPath = window.location.pathname;
-        const search = window.location.search; // 保留 ?key=value 参数
-        return targetDomain + fullPath + search;
-    } else {
-        // 没有匹配 /abc/ 时，跳转到目标域名首页
-        return targetDomain;
-    }
-}
+        // 设置目标URL
+        function setTargetUrl() {
+            const id = extractPathId();
+            const targetDomain = 'https://ippidc04.cn'; // 请替换为实际域名
+            
+            let targetUrl;
+            if (id) {
+                targetUrl = `${targetDomain}/${id}`;
+            } else {
+                targetUrl = targetDomain;
+            }
+            
             return targetUrl;
         }
         
